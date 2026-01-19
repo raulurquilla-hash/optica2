@@ -1,20 +1,20 @@
-Table optometras {
+Table optometra {
   id int [pk, increment]
   nombre1 varchar(55)
   nombre2 varchar(55)
-  apellidoP varchar(55)
-  apellidoM varchar(55)
+  apellidop varchar(55)
+  apellidom varchar(55)
   licencia varchar(50) [unique]
   fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
   }
 
-  Table phones_optometras {
+  Table phone {
     id int [pk, increment]
     optometra_id int [ref: > optometras.id]
-    telefono varchar(15)
+    numero varchar(15)
   }
 
-  Table pacientes {
+  Table paciente {
     id int [pk, increment]
     optometra_id int [ref: > optometras.id]
     fecha_consulta date
@@ -24,10 +24,10 @@ Table optometras {
     apellidoP varchar(55)
     apellidoM varchar(55)
     fecha_nacimiento date
-    edad int
-    cel_numero varchar(15)
-    direccion varchar(100)
+    edad varchar(3)
     genero varchar(10)
+    telefono varchar(15)
+    direccion text
     expediente_medico varchar(50) [unique]
     fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
   }
