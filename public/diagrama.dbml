@@ -32,7 +32,7 @@ Table optometra {
     fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
   }
 
-  Table examenes {
+  Table examen {
   id int [pk, increment]
   paciente_id int [ref: > pacientes.id]
   rx_od varchar(10)
@@ -56,17 +56,17 @@ Table optometra {
   fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
 }
 
-Table diagnosticos {
+Table diagnostico {
   id int [pk, increment]
-    examen_id int [ref: > examenes.id]
+    examen_id int [ref: > examen.id]
     descripcion text
     fecha_diagnostico date 
     fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
 }
 
-Table tratamientos {
+Table tratamiento {
   id int [pk, increment]
-    diagnostico_id int [ref: > diagnosticos.id]
+    diagnostico_id int [ref: > diagnostico.id]
     tratamiento text
     fecha_tratamiento date 
     fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
