@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Paciente;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Paciente>
@@ -21,6 +22,8 @@ class PacienteFactory extends Factory
         $nombre2 = $this->faker->firstName();
         $apellidoP = $this->faker->lastName();
         $apellidoM = $this->faker->lastName();
+        $fecha_nacimiento = $this->faker->dateTimeBetween('-70 years', '-4 years')->format('Y-m-d');
+        $edad = Carbon::parse($fecha_nacimiento);
     
     return [
             'optometra_id' => \App\Models\Optometra::factory(),
@@ -30,12 +33,12 @@ class PacienteFactory extends Factory
             'nombre2' => $this->faker->firstName(),
             'apellidoP' => $this->faker->lastName(),
             'apellidoM' => $this->faker->lastName(),
-            'fecha_nacimiento' => $this->faker->date(),
-            'edad' => $this->faker->numberBetween(1, 100),
+            'fecha_nacimiento' => $this->faker->dateTimeBetween('-70 years', '-4 years')->format('Y-m-d'),
+            'edad' => $edad->age,
             'genero' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'telefono' => $this->faker->regexify('[0-9]{7,15}'),
             'direccion' => $this->faker->address(),
-            'expediente_medico' => $this->faker->unique()->regexify('[A-Z]{2}[0-9]{6}'),
+            'expediente_medico' => $this->generarCodigoExpediente($nombre1, $nombre2, $apellidoP, $apellidoM),
         ];
     }
 

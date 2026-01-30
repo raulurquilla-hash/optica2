@@ -21,9 +21,12 @@ class DatabaseSeeder extends Seeder
      */
      public function run(): void
     {
-        App\Database\Seeders\OptometrasSeeder::factory(10)->create();
-        App\Database\Seeders\PacientesSeeder::factory(50)->create();
         
+       
+        \App\Models\Optometra::factory(10)->create();
+        \App\Models\Phone::factory(10)->create();
+        \App\Models\Paciente::factory(15)->create();
+        \App\Models\Examen::factory(15)->create();
     }
 
 
