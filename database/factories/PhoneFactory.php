@@ -18,7 +18,7 @@ class PhoneFactory extends Factory
     public function definition(): array
     {
         return [
-           'optometra_id' => Optometra::factory()->create(),
+           'optometra_id' => Optometra::factory(),
            'numero' => $this->faker->phoneNumber(),
         ];
     }

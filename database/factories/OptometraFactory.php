@@ -23,12 +23,12 @@ class OptometraFactory extends Factory
                
         
         return [
-            'nombre_1' => $nombre1,
-            'nombre_2' => $nombre2,
-            'apellido_p' => $apellidoP,
-            'apellido_m' => $apellidoM,
+            'nombre1' => $nombre1,
+            'nombre2' => $nombre2,
+            'apellidop' => $apellidoP,
+            'apellidom' => $apellidoM,
             'licencia' => $this->faker->unique()->numerify('##########'),
-            ];
+        ];
         
     }
 }

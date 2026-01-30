@@ -70,11 +70,6 @@ class PacienteFactory extends Factory
     }
 
     
-    //Relationships
 
-   public function paciente():HasOne
-   {
-       return $this->hasOne(Paciente::class);
-   } 
 
 }
