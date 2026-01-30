@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Iluminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Optometra; 
 
 return new class extends Migration
 {
@@ -14,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Optometra::class);
+            $table->foreignIdFor(Optometra::class)->constrained()->cascadeOnDelete();
             $table->date('fecha_consulta');
             $table->string('dui', 11)->unique();
             $table->string('nombre1', 55);

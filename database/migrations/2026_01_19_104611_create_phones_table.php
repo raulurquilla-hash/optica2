@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Optometra::class);
+            $table->foreignIdFor(Optometra::class)->constrained()->cascadeOnDelete();
             $table->string('numero', 15);
             $table->timestamps();
         });

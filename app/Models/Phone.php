@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Optometra;
 use Illuminate\Database\Eloquent\Model;
-use Iluminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory; 
 
 class Phone extends Model
 {
@@ -15,9 +16,9 @@ class Phone extends Model
         'optometra_id',
         'numero',
     ];
-    //Relationships
+    // Relationships
 
-    public function optometra()
+    public function optometra(): BelongsTo
     {
         return $this->belongsTo(Optometra::class);
     }

@@ -5,7 +5,7 @@ use App\Models\Optometra;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Iluminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo; 
 
 return new class extends Migration
 {
@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('examens', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Paciente::class);
-            $table->foreignIdFor(Optometra::class);
+            $table->foreignIdFor(Paciente::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Optometra::class)->constrained()->cascadeOnDelete();
             $table->string('rx_od');
             $table->string('rx_oi');
             $table->string('esfera_od');

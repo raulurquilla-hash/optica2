@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Iluminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo; 
 
 class Paciente extends Model
 {
@@ -28,7 +28,7 @@ class Paciente extends Model
     ];
 
     // Relación con el modelo Optometra
-    public function optometra()
+    public function optometra(): BelongsTo
     {
         return $this->belongsTo(Optometra::class);
     }
