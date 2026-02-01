@@ -1,0 +1,161 @@
+Table optometras {
+  id int [pk, increment]
+  nombre varchar(100)
+  contacto varchar(100)
+  telefono varchar(15)
+  direccion varchar(150)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table phones {
+  id int [pk, increment]
+  optometra_id_id int [ref: > optometras.id]
+  tipo varchar(50)
+  numero varchar(15)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+ } 
+
+ Table pacientes {
+  id int [pk, increment]
+  optometra_id int [ref: > optometras.id]
+  fecha_consulta date
+  dui varchar(11)
+  nombre1 varchar(55)
+  nombre2 varchar(55)
+  apellidoP varchar(55)
+  apellidoM varchar(55)
+  fecha_nacimiento date
+  edad varchar(3)
+  genero varchar(10)
+  telefono varchar(15)
+  direccion text
+  expediente_medico varchar(50) [unique]
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table examen {
+  id int [pk, increment]
+  paciente_id int [ref: > pacientes.id]
+  rx_od varchar(10)
+  rx_oi varchar(10)
+  esfera_od varchar(10)
+  esfera_oi varchar(10)
+  cilindro_od varchar(10)
+  cilindro_oi varchar(10)
+  eje_od varchar(10)
+  eje_oi varchar(10)
+  base_od varchar(10)
+  base_oi varchar(10)
+  add  varchar(10)
+  lensometria varchar (100)
+  agudeza_sl varchar(10)
+  agudeza_cc varchar(10)
+  rx text
+  fecha_examen date
+  resultados text
+  observaciones text
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table diagnostico {
+  id int [pk, increment]
+    paciente_id int [ref: > pacientes.id]
+    examen_id int [ref: > examen.id]
+    descripcion text
+    fecha_diagnostico date 
+    fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table tratamiento {
+  id int [pk, increment]
+    paciente_id int [ref: > pacientes.id]
+    diagnostico_id int [ref: > diagnostico.id]
+    tratamiento text
+    fecha_tratamiento date
+    fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table proveedores_lentes {
+  id int [pk, increment]
+  nombre varchar(100)
+  contacto varchar(100)
+  telefono varchar(15)
+  direccion varchar(150)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table proveedores_aros {
+  id int [pk, increment]
+  nombre varchar(100)
+  contacto varchar(100)
+  telefono varchar(15)
+  direccion varchar(150)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table material_aros {
+  id int [pk, increment]
+  proveedores_id int [ref: > proveedores_aros.id]
+  tipo_material enum('Pasta', 'Acetato', 'Policarbonato', 'Resina', 'Metalico')
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table tipos_lentes {
+  id int [pk, increment]
+  proveedores_id int [ref: > proveedores_lentes.id]
+  tipo_lente enum('Monofocal', 'Bifocal', 'Progresivo', 'Contacto', 'Otros')
+  descripcion text
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table compras {
+  id int [pk, increment]
+  proveedores_id int [ref: > proveedores_aros.id]
+  proveedores_id int [ref: > proveedores_lentes.id]
+  tipo_compra enum('Lentes', 'Aros')
+  fecha_compra date
+  marca varchar(100)
+  modelo varchar(100)
+  color varchar(50)
+  cantidad_unidades int
+  precio_unitario decimal(10,2)
+  total_costo_aros decimal(10,2)
+  total_costo_lentes decimal(10,2)
+  inversion decimal(10,2)
+  porcentaje_utilidad decimal(5,2)
+  gran_total decimal(10,2)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table ventas {
+  id int [pk, increment]
+  proveedores_id int [ref: > proveedores_aros.id]
+  proveedores_id int [ref: > proveedores_lentes.id]
+  paciente_id int [ref: > pacientes.id]
+  tipo_venta enum('Lentes', 'Aros', 'Contacto', 'Otros')
+  fecha_venta date
+  marca varchar(100)
+  modelo varchar(100)
+  color varchar(50)
+  cantidad_unidades int
+  precio_unitario decimal(10,2)
+  subtotal decimal(10,2)
+  descuento decimal(10,2)
+  total_venta decimal(10,2)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table inventario {
+  id int [pk, increment]
+  proveedores_id int [ref: > proveedores_aros.id]
+  proveedores_id int [ref: > proveedores_lentes.id]
+  tipo_producto enum('Lentes', 'Aros', 'Contacto', 'Otros')
+  marca varchar(100)
+  modelo varchar(100)
+  color varchar(50)
+  cantidad_stock int
+  precio_unitario decimal(10,2)
+  fecha_registro timestamp [default: `CURRENT_TIMESTAMP`]
+} 
+
+
