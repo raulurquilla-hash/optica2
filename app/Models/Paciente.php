@@ -26,10 +26,4 @@ class Paciente extends Model
         'direccion',
         'expediente_medico',
     ];
-
-    // Relación con el modelo Optometra
-    public function optometra(): BelongsTo
-    {
-        return $this->belongsTo(Optometra::class);
-    }
 }

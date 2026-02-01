@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Optometra;
+use App\Models\Examen;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class OptometraSeeder extends Seeder
+class ExamenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //Optometra::factory(10)->create();
-        Optometra::factory(10)->create(); // Crea 10 usuarios falsos [7]
+       Examen::factory(10)->create(); // Crea 10 examenes falsos [7]
     }
 }
